@@ -5,7 +5,7 @@
 
 'use strict';
 
-var name = 'pug',
+var name = 'static',
     log  = require('@runner/logger').wrap(name);
 
 
