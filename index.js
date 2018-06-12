@@ -72,7 +72,7 @@ function generator ( config, options ) {
         open  = require('opn'),
         server;
 
-    // sanitize
+    // sanitize and extend defaults
     config = Object.assign({
         path: path.resolve(config.path || '.'),
         open: '',
