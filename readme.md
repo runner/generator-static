@@ -2,17 +2,17 @@ Tasks generator for static server
 =================================
 
 [![build status](https://img.shields.io/travis/runner/generator-static.svg?style=flat-square)](https://travis-ci.org/runner/generator-static)
-[![npm version](https://img.shields.io/npm/v/@runner/generator-static.svg?style=flat-square)](https://www.npmjs.com/package/@runner/generator-static)
+[![npm version](https://img.shields.io/npm/v/runner-generator-static.svg?style=flat-square)](https://www.npmjs.com/package/runner-generator-static)
 [![dependencies status](https://img.shields.io/david/runner/generator-static.svg?style=flat-square)](https://david-dm.org/runner/generator-static)
 [![devDependencies status](https://img.shields.io/david/dev/runner/generator-static.svg?style=flat-square)](https://david-dm.org/runner/generator-static?type=dev)
 [![Gitter](https://img.shields.io/badge/gitter-join%20chat-blue.svg?style=flat-square)](https://gitter.im/DarkPark/runner)
-[![RunKit](https://img.shields.io/badge/RunKit-try-yellow.svg?style=flat-square)](https://npm.runkit.com/@runner/generator-static)
+[![RunKit](https://img.shields.io/badge/RunKit-try-yellow.svg?style=flat-square)](https://npm.runkit.com/runner-generator-static)
 
 
 ## Installation ##
 
 ```bash
-npm install @runner/generator-static
+npm install runner-generator-static
 ```
 
 
@@ -21,7 +21,7 @@ npm install @runner/generator-static
 Add to the scope:
 
 ```js
-var generator = require('@runner/generator-static');
+var generator = require('runner-generator-static');
 ```
 
 Generate tasks according to the given config:
@@ -100,4 +100,4 @@ according to the contribution [rules](.github/contributing.md).
 
 ## License ##
 
-`@runner/generator-static` is released under the [GPL-3.0 License](http://opensource.org/licenses/GPL-3.0).
+`runner-generator-static` is released under the [GPL-3.0 License](http://opensource.org/licenses/GPL-3.0).
