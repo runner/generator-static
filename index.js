@@ -78,7 +78,7 @@ function generator ( config, options ) {
 
     // sanitize and extend defaults
     config = config || {};
-    config = Object.assign({
+    generator.config = config = Object.assign({
         path: path.resolve(config.path || '.'),
         open: '',
         port: 8080,
