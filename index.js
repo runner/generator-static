@@ -9,6 +9,28 @@ var name = 'static',
     log  = require('runner-logger').wrap(name);
 
 
+function getExternalIp ( family ) {
+    var os = require('os'),
+        interfaces = os.networkInterfaces(),
+        index = 0,
+        interfaceName, iface;
+
+    for ( interfaceName in interfaces ) {
+        iface = interfaces[interfaceName];
+
+        index = 0;
+        while ( index < iface.length ) {
+            if ( iface[index].family === family && !iface[index].internal ) {
+                return iface[index].address;
+            }
+            ++index;
+        }
+    }
+
+    return '0.0.0.0';
+}
+
+
 function start ( config, done ) {
     var files = new (require('node-static').Server)(config.path, config.staticOptions),
         server;
@@ -39,7 +61,7 @@ function start ( config, done ) {
         // port can be 0 from the start
         config.port = server.address().port;
 
-        config.uri = 'http://' + require('ip').address() + ':' + config.port + '/' + config.open;
+        config.uri = 'http://' + getExternalIp('IPv4') + ':' + config.port + '/' + config.open;
 
         log.info('serving directory: ' + log.colors.bold(config.path));
         log.info('web address: ' + log.colors.green.bold(config.uri));
