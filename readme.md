@@ -28,7 +28,10 @@ Generate tasks according to the given config:
 
 ```js
 var tasks = generator({
-    open: 'build/develop/index.html'
+    open: 'build/develop/index.html',
+    onReady: function ( config ) {
+        console.log(config);
+    }
 });
 ```
 
@@ -61,6 +64,7 @@ It's an object with the following properties:
  path          | root directory to serve (default: `.`)
  open          | entry page to open in the default browser
  port          | HTTP server listening port (default: `8080`)
+ onReady       | user callback on static server start
  staticOptions | static server [options](https://github.com/cloudhead/node-static#options-when-creating-an-instance-of-server) 
 
 

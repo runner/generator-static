@@ -43,6 +43,10 @@ function start ( config, done ) {
 
         log.info('serving directory: ' + log.colors.bold(config.path));
         log.info('web address: ' + log.colors.green.bold(config.uri));
+
+        if ( typeof config.onReady === 'function' ) {
+            config.onReady(config);
+        }
     });
 
     server.on('close', done);
@@ -78,6 +82,7 @@ function generator ( config, options ) {
         path: path.resolve(config.path || '.'),
         open: '',
         port: 8080,
+        onReady: null,
         staticOptions: {
             cache: false
         }
