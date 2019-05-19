@@ -77,7 +77,6 @@ function generator ( config, options ) {
         server;
 
     // sanitize and extend defaults
-    config = config || {};
     generator.config = config = Object.assign({
         path: path.resolve(config.path || '.'),
         open: '',
