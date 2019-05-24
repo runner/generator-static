@@ -5,35 +5,36 @@
 
 'use strict';
 
-var name = 'static',
+const
+    name = 'static',
     log  = require('runner-logger').wrap(name);
 
 
 function start ( config, done ) {
-    var files = new (require('node-static').Server)(config.path, config.staticOptions),
-        server;
+    const
+        files  = new (require('node-static').Server)(config.path, config.staticOptions),
+        server = require('http').createServer(function ( request, response ) {
+            request.addListener('end', function () {
+                // static files
+                files.serve(request, response, function ( error ) {
+                    const
+                        address = request.connection.remoteAddress || log.colors.red('[0.0.0.0]'),
+                        status  = response.statusCode === 200 ? log.colors.green(response.statusCode) : log.colors.yellow(response.statusCode);
 
-    server = require('http').createServer(function ( request, response ) {
-        request.addListener('end', function () {
-            // static files
-            files.serve(request, response, function ( error ) {
-                var address = request.connection.remoteAddress || log.colors.red('[0.0.0.0]'),
-                    status  = response.statusCode === 200 ? log.colors.green(response.statusCode) : log.colors.yellow(response.statusCode);
+                    if ( error ) {
+                        response.end();
+                    }
 
-                if ( error ) {
-                    response.end();
-                }
-
-                log[error ? 'fail' : 'info'](
-                    '%s\t%s\t%s\t%s',
-                    address.replace('::ffff:', ''),
-                    request.method,
-                    error ? log.colors.red(error.status) : status,
-                    request.url.replace(/\//g, log.colors.grey('/'))
-                );
-            });
-        }).resume();
-    });
+                    log[error ? 'fail' : 'info'](
+                        '%s\t%s\t%s\t%s',
+                        address.replace('::ffff:', ''),
+                        request.method,
+                        error ? log.colors.red(error.status) : status,
+                        request.url.replace(/\//g, log.colors.grey('/'))
+                    );
+                });
+            }).resume();
+        });
 
     server.on('listening', function () {
         // port can be 0 from the start
@@ -71,10 +72,12 @@ function stop ( server ) {
 
 
 function generator ( config, options ) {
-    var tasks = {},
+    const
+        tasks = {},
         path  = require('path'),
-        open  = require('opn'),
-        server;
+        open  = require('opn');
+
+    let server;
 
     // sanitize and extend defaults
     generator.config = config = Object.assign({

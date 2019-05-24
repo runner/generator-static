@@ -21,13 +21,13 @@ npm install runner-generator-static
 Add to the scope:
 
 ```js
-var generator = require('runner-generator-static');
+const generator = require('runner-generator-static');
 ```
 
 Generate tasks according to the given config:
 
 ```js
-var tasks = generator({
+const tasks = generator({
     open: 'build/develop/index.html',
     onReady: function ( config ) {
         console.log(config);
@@ -38,7 +38,7 @@ var tasks = generator({
 Add generated tasks to the `runner` instance:
 
 ```js
-var runner = require('runner');
+const runner = require('runner');
 
 Object.assign(runner.tasks, tasks);
 ```
