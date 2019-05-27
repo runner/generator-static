@@ -18,7 +18,7 @@
         "node-static": "^0.7.11",
         "ip": "^1.1.5",
         "opn": "^6.0.0",
-        "runner-logger": "^1.0.1"
+        "runner-logger": "^2.0.0"
     },
     "devDependencies": {
         "cjs-eslint": "^1.2.4"
